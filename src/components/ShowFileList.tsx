@@ -1,5 +1,6 @@
 import { ShowFile } from '../types/Show';
 import ShowFileDetails from './ShowFileDetails';
+import formatBytes from '../utils/formatBytes.ts';
 import { List, ListItemButton, ListItemIcon, Icon, ListItemText } from '@mui/material';
 
 interface ShowFileListProps {
@@ -18,7 +19,7 @@ function ShowFileList({ showFiles, selectedFile, setSelectedFile }: ShowFileList
 					</ListItemIcon>
 					<ListItemText
 						primary={showFile.name}
-						secondary={`Size: ${showFile.size.toLocaleString()} - Last Modified: ${(new Date(showFile.modified * 1000)).toLocaleString()}`}
+						secondary={`Size: ${formatBytes(showFile.size)} - Last Modified: ${(new Date(showFile.modified * 1000)).toLocaleString()}`}
 					/>
 					{(selectedFile == showFile) && (
 						<ShowFileDetails file={showFile} />
