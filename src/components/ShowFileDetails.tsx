@@ -15,7 +15,7 @@ function ShowFileDetails({ file }: ShowFileDetailsProps) {
 	return (
 		<>
 			{isAudioFile(file.name) && (
-				<audio controls>
+				<audio controls autoPlay={true}>
 					<source src={file.url} />
 				</audio>
 			)}
@@ -23,10 +23,10 @@ function ShowFileDetails({ file }: ShowFileDetailsProps) {
 				href={file.url} 
 				LinkComponent="a" 
 				sx={{ ml: 2 }} 
-				aria-label={`Download ${file.name}`} 
+				aria-label={`View ${file.name}`} 
 				target="_blank"
 			>
-				<Icon>download</Icon>
+				<Icon>link</Icon>
 			</IconButton>
 		</>
 	)
