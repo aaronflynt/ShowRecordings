@@ -42,7 +42,6 @@ export default function useShows() {
 	useEffect(() => {
 		async function getShows() {
 			setLoading(true);
-			await new Promise(resolve => setTimeout(resolve, 1000));
 			setError("");
 			setShows([]);
 			try {

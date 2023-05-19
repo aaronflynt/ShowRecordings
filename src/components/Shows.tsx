@@ -1,7 +1,8 @@
 import { Show, ShowFile } from '../types/Show';
 import ShowDetails from './ShowDetails';
 import Navigation from './Navigation';
-import { Box, List, ListItemButton, ListItemIcon, Icon, ListItemText } from '@mui/material';
+import { Box, List, ListItemButton, ListItemIcon, Icon, ListItemText, Paper } from '@mui/material';
+import ShowFileDetails from './ShowFileDetails';
 
 interface ShowsProps {
 	shows: Show[];
@@ -38,6 +39,12 @@ function Shows({ shows, selectedShow, setSelectedShow, selectedFile, setSelected
 					)}
 				</List>
 			)}
+			<Box sx={{mb: 25}} />
+			<Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+				{selectedFile && (
+					<ShowFileDetails file={selectedFile} setSelectedFile={setSelectedFile} />
+				)}
+			</Paper>
 		</Box>
 	)
 }

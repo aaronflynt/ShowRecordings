@@ -1,5 +1,4 @@
 import { ShowFile } from '../types/Show';
-import ShowFileDetails from './ShowFileDetails';
 import formatBytes from '../utils/formatBytes.ts';
 import { List, ListItemButton, ListItemIcon, Icon, ListItemText } from '@mui/material';
 
@@ -9,11 +8,16 @@ interface ShowFileListProps {
 	setSelectedFile: Function;
 }
 
-function ShowFileList({ showFiles, selectedFile, setSelectedFile }: ShowFileListProps) {
+function ShowFileList({ showFiles, setSelectedFile }: ShowFileListProps) {
+	const selectFile = async (file: ShowFile) => {
+		await setSelectedFile(null);
+		await setSelectedFile(file);
+	}
+
 	return (
 		<List>
 			{showFiles.map((showFile: ShowFile) =>
-				<ListItemButton key={showFile.name} onClick={() => setSelectedFile(showFile)} divider={true}>
+				<ListItemButton key={showFile.name} onClick={() => selectFile(showFile)} divider={true}>
 					<ListItemIcon>
 						<Icon>music_note</Icon>
 					</ListItemIcon>
@@ -21,9 +25,6 @@ function ShowFileList({ showFiles, selectedFile, setSelectedFile }: ShowFileList
 						primary={showFile.name}
 						secondary={`Size: ${formatBytes(showFile.size)} - Last Modified: ${(new Date(showFile.modified * 1000)).toLocaleString()}`}
 					/>
-					{(selectedFile == showFile) && (
-						<ShowFileDetails file={showFile} />
-					)}
 				</ListItemButton>
 			)}
 		</List>
