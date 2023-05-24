@@ -37,7 +37,7 @@ export default function useShows() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 	const [shows, setShows] = useState<Show[]>([]);
-    const [reloadDate, setReloadDate] = useState(new Date());
+	const [reloadDate, setReloadDate] = useState(new Date());
 
 	useEffect(() => {
 		async function getShows() {
@@ -69,7 +69,7 @@ export default function useShows() {
 		loading,
 		error,
 		shows,
-        reloadDate,
-        setReloadDate
+		reloadDate,
+		setReloadDate
 	};
 }
