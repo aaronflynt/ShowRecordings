@@ -8,7 +8,7 @@ interface ShowFileListProps {
 	setSelectedFile: Function;
 }
 
-function ShowFileList({ showFiles, setSelectedFile }: ShowFileListProps) {
+function ShowFileList({ showFiles, selectedFile, setSelectedFile }: ShowFileListProps) {
 	const selectFile = async (file: ShowFile) => {
 		await setSelectedFile(null);
 		await setSelectedFile(file);
@@ -17,9 +17,16 @@ function ShowFileList({ showFiles, setSelectedFile }: ShowFileListProps) {
 	return (
 		<List>
 			{showFiles.map((showFile: ShowFile) =>
-				<ListItemButton key={showFile.name} onClick={() => selectFile(showFile)} divider={true}>
+				<ListItemButton key={showFile.name} onClick={() => selectFile(showFile)} divider={true} selected={ selectedFile == showFile }>
 					<ListItemIcon>
-						<Icon>music_note</Icon>
+						{selectedFile == showFile &&
+						(
+							<Icon>volume_up</Icon>
+						)}
+						{selectedFile != showFile &&
+						(
+							<Icon>music_note</Icon>
+						)}
 					</ListItemIcon>
 					<ListItemText
 						primary={showFile.name}

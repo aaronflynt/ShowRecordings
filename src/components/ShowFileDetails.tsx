@@ -25,7 +25,10 @@ function ShowFileDetails({ file, setSelectedFile }: ShowFileDetailsProps) {
 			)}
 			<Stack>
 				<Typography>
-					<Link href={file.url} target="_blank">{file.name}</Link><br />
+					<Link href={file.url} target="_blank">
+						{file.name}
+						<Icon fontSize="inherit" sx={{ ml: 0.5, mb: 0, pb: 0, pt: 0.4 }}>link</Icon>
+					</Link><br />
 					Size: {formatBytes(file.size)}<br />
 					Last Modified: {(new Date(file.modified * 1000)).toLocaleString()}
 				</Typography>
